@@ -27,9 +27,6 @@ jobs:
       - name: Install dependencies
         run: npm install
       
-      - name: Build Project
-        run: npm run build  # Add this step if you have a build process
-
       - name: Run Tests
         run: npm test
 
