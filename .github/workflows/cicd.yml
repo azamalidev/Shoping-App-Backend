@@ -14,7 +14,12 @@ jobs:
         with:
           status: starting
           channel: '#mar-2024-weekend-batch'
-          message: Starting Docker Build image...
+          message: |
+            *Starting Docker Build image...*
+            Repository: <https://github.com/${{ github.repository }}|${{ github.repository }}>
+            Ref: ${{ github.ref }}
+            Commit: ${{ github.sha }}
+            Author: ${{ github.actor }}
         if: always()
       
       - uses: actions/checkout@v3
@@ -32,7 +37,14 @@ jobs:
 
       - uses: act10ns/slack@v2
         with:
-          channel: '#mar-2024-weekday-batch'
           status: ${{ job.status }}
-          steps: ${{ toJson(steps) }}
+          channel: '#mar-2024-weekend-batch'
+          message: |
+            *Workflow \`${{ github.workflow }}\` with job \`${{ github.job }}\` has completed.*
+            Status: ${{ job.status }}
+            Repository: <https://github.com/${{ github.repository }}|${{ github.repository }}>
+            Ref: ${{ github.ref }}
+            Commit: ${{ github.sha }}
+            Author: ${{ github.actor }}
+            Commit Message: ${{ github.event.head_commit.message }}
         if: always()
