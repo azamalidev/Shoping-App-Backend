@@ -27,8 +27,8 @@ jobs:
       - name: Install dependencies
         run: npm install
       
-      - name: Build with Maven
-        run: mvn install -f MyWebApp/pom.xml
+      - name: Run Tests
+        run: npm test
 
       - uses: act10ns/slack@v2
         with:
